@@ -3,3 +3,6 @@ nav:
   - Home: index.md
   - Odoo + Docker: install.md
   - Using Odoo: using.md
+  - Add-ons and Modules:
+    - Introduction to Add-ons and Modules: addons.md
+    - Creating (Scaffolding) an Add-on: scaffolding.md
