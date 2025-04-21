@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Creating (Scaffolding) an Add-on - My Odoo Documentation</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">My Odoo Documentation</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Setup</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../setup/install/" class="dropdown-item">Setting Up Odoo with Docker</a>
+</li>
+                                    
+<li>
+    <a href="../../setup/firsttimeuse/" class="dropdown-item">First-Time Setup</a>
+</li>
+                                    
+<li>
+    <a href="../../setup/vscsetup/" class="dropdown-item">Visual Studio Code Integration</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Add-ons and Modules</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../intro/" class="dropdown-item">Introduction to Add-ons and Modules</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Creating (Scaffolding) an Add-on</a>
+</li>
+                                    
+<li>
+    <a href="../models/" class="dropdown-item">Models</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../intro/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../models/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#creating-scaffolding-an-add-on" class="nav-link">Creating (Scaffolding) an Add-on</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#importing-an-add-on-to-the-odoo-container" class="nav-link">Importing an Add-on to the Odoo Container</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#verifying-the-add-on-is-present-in-odoo" class="nav-link">Verifying the Add-on is Present in Odoo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="creating-scaffolding-an-add-on">Creating (Scaffolding) an Add-on</h1>
+<p>Just like in numerous frameworks that involve databases, <strong>scaffolding</strong> refers to the process of making a "skeleton" or "structure". In fact, this does not only revolve databases alone but encompasses anything that involves the making of a readymade, more-or-less structure (just like a template or boilerplate code).</p>
+<p>In Odoo, an addon can be scaffolded. This takes care of setting up all the files an add-on needs without the need of manually creating those files.</p>
+<p>In a traditional setup of Odoo, the way to scaffold an add-on is:</p>
+<pre><code class="language-bash">odoo-bin scaffold &lt;name&gt; &lt;path&gt;
+</code></pre>
+<p>Where <code>&lt;name&gt;</code> is the name of the add-on and <code>&lt;path&gt;</code> is the path to where the add-on will be created.</p>
+<p>In a Docker setup, the command is slightly different. The command to scaffold an add-on in a Docker setup is:</p>
+<pre><code class="language-bash">docker exec &lt;container-name&gt; odoo scaffold &lt;name&gt; /mnt/extra-addons
+</code></pre>
+<p><code>/usr/bin/odoo</code> is analogous to <code>odoo-bin</code> above, which is nested under a command, <code>docker exec</code> which calls docker to execute whatever shell command is appended before it.</p>
+<ul>
+<li><code>&lt;name&gt;</code> still refers to the name of the add-on.</li>
+<li><code>/mnt/extra-addons</code> is a fixed path where all of the extra or custom add-ons will be added. In Docker, this is a volume where it cooperates with the Odoo container alongside the second volume which handles the Postgre container (the container that is being demonstrated to delete in <a href="install.md/#docker-crash-course">Odoo + Docker/Delete a Volume</a>).</li>
+</ul>
+<p>For example, to create a custom "student" add-on, the command would be:</p>
+<pre><code class="language-bash">docker exec odoo odoo scaffold student /mnt/extra-addons
+</code></pre>
+<p>Where the first <code>odoo</code> is the name of the Odoo container, the second <code>odoo</code> analogous to odoo-bin, and <code>student</code> is the name of our add-on.</p>
+<p>Afterwards, you can find the volume where this file structure resembles the following in Docker Desktop under the Volumes view from the sidebar:
+<img alt="Screenshot" src="../../img/addoninvolume.png" />
+As shown, the model that we scaffolded, <code>student</code> is present in the root of this directory. You can further verify that this is inside <code>/mnt/extra-addons</code> by inspecting the file structure of your Odoo container.</p>
+<h2 id="importing-an-add-on-to-the-odoo-container">Importing an Add-on to the Odoo Container</h2>
+<p>As per the official README in the Odoo DockerHub repository, the command to import an add-on to the Odoo container is:</p>
+<pre><code class="language-bash">docker run -v /path/to/addons:/mnt/extra-addons -p 8069:8069 --name odoo --link db:db -t odoo
+</code></pre>
+<p>Where <code>/path/to/addons</code> may be an individual folder of an add-on or a folder comprised of add-ons within. Furthermore, this command subsequently starts your Odoo container with the add-on(s) present in the <code>/mnt/extra-addons</code> directory.</p>
+<p><strong><em>An alternative to import an existing add-on to the Odoo container is by this command:</em></strong></p>
+<pre><code class="language-bash">docker cp /path/to/addon &lt;container-name&gt;:/mnt/extra-addons
+</code></pre>
+<p>Where <code>&lt;container-name&gt;</code> is the name of your Odoo container, throughout this documentation being that the name is <code>odoo</code>.</p>
+<p>For example, if I have an add-on named <code>student</code> from my Desktop in my local machine, I can import it to the Odoo container by:</p>
+<pre><code class="language-bash">docker cp /Users/User/Desktop/student odoo:/mnt/extra-addons
+</code></pre>
+<p>This verbose output should be present after running <code>docker cp</code>:</p>
+<pre><code class="language-bash">Successfully copied XX.XkB to odoo:/mnt/extra-addons
+</code></pre>
+<h2 id="verifying-the-add-on-is-present-in-odoo">Verifying the Add-on is Present in Odoo</h2>
+<p>Back in the Dashboard in the upper-left of the navigation bar, do <strong>Update Apps List</strong> and <strong>Updates</strong>.
+<img alt="Screenshot" src="../../img/addonupdate.png" /></p>
+<p>Afterwards, you can search for the add-on that you have scaffolded in the search bar of the Apps page. <strong>Make sure the Apps filter is removed</strong> by pressing <code>Backspace</code> in the search bar, then search for the add-on. In this example, <code>student</code>:
+<img alt="Screenshot" src="../../img/newaddon.png" /></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
