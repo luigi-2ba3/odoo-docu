@@ -10,7 +10,7 @@
 
 1) Install and run a PostgresSQL container:
 ````
-docker run -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo
+docker run -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo -e POSTGRES_DB=postgres --name db postgres:15
 ````
 
 2) Install and run an Odoo instance and make sure to have the tag as **`-t odoo:16.0`** with an appended `:16.0` (for projects that require a specific version of Odoo to be developed on):

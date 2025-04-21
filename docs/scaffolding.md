@@ -20,9 +20,9 @@ docker exec <container-name> odoo scaffold <name> /mnt/extra-addons
 
 For example, to create a custom "student" add-on, the command would be:
 ````bash
-docker exec odoo odoo student /mnt/extra-addons
+docker exec odoo odoo scaffold student /mnt/extra-addons
 ````
-Where `odoo` is the name of the Odoo container and `student` is the name of our add-on.
+Where the first `odoo` is the name of the Odoo container, the second `odoo` analogous to odoo-bin, and `student` is the name of our add-on.
 
 Afterwards, you can find the volume where this file structure resembles the following in Docker Desktop under the Volumes view from the sidebar:
 ![Screenshot](img/addoninvolume.png)
