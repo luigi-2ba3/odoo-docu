@@ -125,9 +125,9 @@
 <li><code>/mnt/extra-addons</code> is a fixed path where all of the extra or custom add-ons will be added. In Docker, this is a volume where it cooperates with the Odoo container alongside the second volume which handles the Postgre container (the container that is being demonstrated to delete in <a href="../install/#docker-crash-course">Odoo + Docker/Delete a Volume</a>).</li>
 </ul>
 <p>For example, to create a custom "student" add-on, the command would be:</p>
-<pre><code class="language-bash">docker exec odoo odoo student /mnt/extra-addons
+<pre><code class="language-bash">docker exec odoo odoo scaffold student /mnt/extra-addons
 </code></pre>
-<p>Where <code>odoo</code> is the name of the Odoo container and <code>student</code> is the name of our add-on.</p>
+<p>Where the first <code>odoo</code> is the name of the Odoo container, the second <code>odoo</code> analogous to odoo-bin, and <code>student</code> is the name of our add-on.</p>
 <p>Afterwards, you can find the volume where this file structure resembles the following in Docker Desktop under the Volumes view from the sidebar:
 <img alt="Screenshot" src="../img/addoninvolume.png" />
 As shown, the model that we scaffolded, <code>student</code> is present in the root of this directory. You can further verify that this is inside <code>/mnt/extra-addons</code> by inspecting the file structure of your Odoo container.</p>
