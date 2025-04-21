@@ -1,8 +1,11 @@
 site_name: My Odoo Documentation
 nav:
   - Home: index.md
-  - Odoo + Docker: install.md
-  - Using Odoo: using.md
+  - Setup:
+    - Setting Up Odoo with Docker: setup/install.md
+    - First-Time Setup: setup/firsttimeuse.md
+    - Visual Studio Code Integration: setup/vscsetup.md
   - Add-ons and Modules:
-    - Introduction to Add-ons and Modules: addons.md
-    - Creating (Scaffolding) an Add-on: scaffolding.md
+    - Introduction to Add-ons and Modules: addons/intro.md
+    - Creating (Scaffolding) an Add-on: addons/scaffolding.md
+    - Models: addons/models.md

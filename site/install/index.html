@@ -121,7 +121,7 @@
 <h2 id="installation-proper">Installation Proper</h2>
 <p><a href="https://hub.docker.com/_/odoo">Reference</a></p>
 <p>1) Install and run a PostgresSQL container:</p>
-<pre><code>docker run -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo
+<pre><code>docker run -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo -e POSTGRES_DB=postgres --name db postgres:15
 </code></pre>
 <p>2) Install and run an Odoo instance and make sure to have the tag as <strong><code>-t odoo:16.0</code></strong> with an appended <code>:16.0</code> (for projects that require a specific version of Odoo to be developed on):</p>
 <pre><code>docker run -p 8069:8069 --name odoo --link db:db -t odoo:16.0

@@ -25,7 +25,7 @@ docker exec odoo odoo scaffold student /mnt/extra-addons
 Where the first `odoo` is the name of the Odoo container, the second `odoo` analogous to odoo-bin, and `student` is the name of our add-on.
 
 Afterwards, you can find the volume where this file structure resembles the following in Docker Desktop under the Volumes view from the sidebar:
-![Screenshot](img/addoninvolume.png)
+![Screenshot](../img/addoninvolume.png)
 As shown, the model that we scaffolded, `student` is present in the root of this directory. You can further verify that this is inside `/mnt/extra-addons` by inspecting the file structure of your Odoo container.
 
 ## Importing an Add-on to the Odoo Container
@@ -55,7 +55,7 @@ Successfully copied XX.XkB to odoo:/mnt/extra-addons
 
 ## Verifying the Add-on is Present in Odoo
 Back in the Dashboard in the upper-left of the navigation bar, do **Update Apps List** and **Updates**.
-![Screenshot](img/addonupdate.png)
+![Screenshot](../img/addonupdate.png)
 
 Afterwards, you can search for the add-on that you have scaffolded in the search bar of the Apps page. **Make sure the Apps filter is removed** by pressing `Backspace` in the search bar, then search for the add-on. In this example, `student`:
-![Screenshot](img/newaddon.png)
+![Screenshot](../img/newaddon.png)

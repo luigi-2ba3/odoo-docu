@@ -98,6 +98,14 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#file-locations" class="nav-link">File Locations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#copying-add-ons" class="nav-link">Copying Add-ons</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -111,7 +119,44 @@
 <h2 id="displaying-all-add-ons-present">Displaying All Add-ons Present</h2>
 <p>While in <strong>debug mode</strong> in the dashboard, simply head to the search field for the apps and press <code>Backspace</code> to remove the <em>Apps</em> filter. This will display all add-ons present in the Odoo instance.
 <img alt="Screenshot" src="../img/addonsshow.gif" />
-As shown, add-ons that aren't applications but come with the default Odoo instance do not show a dedicated icon but rather, a generic, outlined cube. It can also be seen that the number of items on the sidebar filtering all the add-ons by categories will increase.</p></div>
+As shown, add-ons that aren't applications but come with the default Odoo instance do not show a dedicated icon but rather, a generic, outlined cube. It can also be seen that the number of items on the sidebar filtering all the add-ons by categories will increase.</p>
+<h2 id="file-locations">File Locations</h2>
+<h3 id="built-in-add-ons">Built-in Add-ons</h3>
+<p>In our Odoo instance run with Docker, it comes bundled with add-ons, some of which are required to be explicitly activated from the Apps page. These add-ons are located in this directory of our container:</p>
+<pre><code class="language-bash">/usr/lib/python3/dist-packages/odoo/addons
+</code></pre>
+<h3 id="custom-add-ons">Custom Add-ons</h3>
+<p>Custom add-ons are user-defined or are developed independently of Odoo. Traditionally, one has to define the path of a folder where the custom add-ons will be placed in their Odoo <code>.conf</code> file. This is by convention as custom add-ons can still be placed in the same directory as the built-in add-ons, but it will mix up with the built-in ones.</p>
+<p>In our Docker setup, it already has been setup for us. The custom add-ons are located in this directory of our container:</p>
+<pre><code class="language-bash">/mnt/extra-addons
+</code></pre>
+<p>Odoo sees this as another add-ons folder, and are read the same as the built-in ones.</p>
+<p>Alternatively, the <code>extra-addons</code> folder can be found in one of the Volumes in Docker that has this file structure:</p>
+<pre><code class="language-bash">&lt;VolumeHash&gt;
+├── __init__.py
+├── __manifest__.py
+├── controllers
+├── demo
+├── models
+├── security
+└── views
+</code></pre>
+<p>This volume is completely synonymous to <code>/mnt/extra-addons</code> in the Odoo container.</p>
+<h2 id="copying-add-ons">Copying Add-ons</h2>
+<p>This action involves the use of the <code>docker cp</code> command.</p>
+<h3 id="host-to-container">Host-to-Container</h3>
+<pre><code class="language-bash">docker cp &lt;host-path&gt; odoo:/mnt/extra-addons
+</code></pre>
+<p>Where <code>&lt;host-path&gt;</code> is the path to the add-on in your local machine.</p>
+<p>For example, if I developed an add-on <code>cashiering</code> from my Desktop and wanted to add this as a custom add-on to my Odoo instance, then:</p>
+<pre><code class="language-bash">docker cp /Users/User/Desktop/cashiering odoo:/mnt/extra-addons
+</code></pre>
+<h3 id="container-to-host">Container-to-Host</h3>
+<pre><code class="language-bash">docker cp odoo:&lt;path-inside-container&gt; &lt;host-path&gt;
+</code></pre>
+<p>Suppose I wanted to inspect the <code>sale</code> add-on built-in into Odoo and have a copy of it in my Desktop, then:</p>
+<pre><code class="language-bash">docker cp odoo:/usr/lib/python3/dist-packages/odoo/addons/sale /Users/User/Desktop
+</code></pre></div>
             </div>
         </div>
 

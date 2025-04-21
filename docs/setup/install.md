@@ -50,7 +50,7 @@ docker rm 7d0d5b20d3d0
 
 ### Delete a Volume
 In [Installation Proper](#installation-proper), we executed `docker run` for both PostgreSQL and Odoo, which created two volumes with arbitrary names, as the case here in this sample screenshot in Docker Desktop.
-![Screenshot](img/voldocker.png)
+![Screenshot](../img/voldocker.png)
 To verify which volume point to which container, for example in Docker Desktop, click on a volume then **Container-in-use** tab. In this example, this volume with a starting id of `9c813de` is the volume for our PostgreSQL container.
-![Screenshot](img/voldocker2.png)
+![Screenshot](../img/voldocker2.png)
 In Docker Desktop, you can drop the Postgre database and/or delete the entire Odoo instance by clicking on the red **Trash** icon, either from Volumes tab or the view of the container itself.
