@@ -137,7 +137,7 @@
 <p><code>/usr/bin/odoo</code> is analogous to <code>odoo-bin</code> above, which is nested under a command, <code>docker exec</code> which calls docker to execute whatever shell command is appended before it.</p>
 <ul>
 <li><code>&lt;name&gt;</code> still refers to the name of the add-on.</li>
-<li><code>/mnt/extra-addons</code> is a fixed path where all of the extra or custom add-ons will be added. In Docker, this is a volume where it cooperates with the Odoo container alongside the second volume which handles the Postgre container (the container that is being demonstrated to delete in <a href="install.md/#docker-crash-course">Odoo + Docker/Delete a Volume</a>).</li>
+<li><code>/mnt/extra-addons</code> is a fixed path where all of the extra or custom add-ons will be added. In Docker, this is a volume where it cooperates with the Odoo container alongside the second volume which handles the Postgre container (the container that is being demonstrated to delete in <a href="../../setup/install/#delete-a-volume">Setup/Setting Up Odoo with Docker/Delete a Volume</a>).</li>
 </ul>
 <p>For example, to create a custom "student" add-on, the command would be:</p>
 <pre><code class="language-bash">docker exec odoo odoo scaffold student /mnt/extra-addons
