@@ -3,7 +3,7 @@ In this context, models represent the structure of the tables in the database. T
 
 In the previous section, scaffolding already did the heavy work of setting up our directories and Python files and manifests. So let's start defining and tweaking these boilerplate code to our liking, starting with our models.
 
-From this point, we'll be focusing on the `models` folder located in the root of our model directory
+From this point, we'll be focusing on the `models` folder located in the root of our module directory
 
 ## The `__init__.py` file
 In its pure boilerplate state, the contents of this file is as follows:
@@ -53,9 +53,11 @@ Here's a breakdown of this snippet, which will be the basis of making models in 
 
 * **`class teacher(models.Model):`** - Syntax for defining a model, where `teacher` is the name of such model. The rest are constant and are fixed.
 
+    * The `Model` in `models.Model` can be substituted instead with `TransientModel` or `AbstractModel` depending on the type of model you want to create. [This article explains further the difference between all three models](https://medium.com/@ahmedmuhumed/model-types-in-odoo-model-vs-transientmodel-vs-abstractmodel-47526091b386).
+
 * **`_name`** - Name of the model. With the parameter you named when you scaffolded for a model, that is the first part of the name followed by the name of the entity relevant to this module *(`teacher` is the name of our module, `teacher` is the name of the entity within this module, so `teacher.teacher`.)*'
 
-* **_`description`** - Description of the model. This appears in Odoo under **Menu > Settings > Technical > Database Structure > Models** (which will be discussed later!)
+* **`_description`** - Description of the model. This appears in Odoo under **Menu > Settings > Technical > Database Structure > Models** (which will be discussed later!)
 ![Screenshot](../img/modeldescshow.png)
 
 The rest of the code are the attributes. They follow a pattern of syntax as follows:
@@ -77,7 +79,7 @@ salary = fields.Float(string="Salary", digits=(10, 2), required=True)
 ````
 
 ## Checking Models
-For every edit you do in your add-ons, restarting Odoo is a must if you want to see your changes in your Odoo instance. This can be achieved in the terminal:
+**Restarting Odoo is a must if you want to see your module changes in your current Odoo instance**. This must be done whenever you want to see your changes made do your module and test it on your local instance. This can be achieved in the terminal:
 ```bash
 docker stop odoo
 docker start -a odoo

@@ -9,3 +9,4 @@ nav:
     - Introduction to Add-ons and Modules: addons/intro.md
     - Creating (Scaffolding) an Add-on: addons/scaffolding.md
     - Models: addons/models.md
+    - Views: addons/views.md
