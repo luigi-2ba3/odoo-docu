@@ -156,5 +156,5 @@ Notice where one of them is commented, `'security/ir.model.access.csv'`. This CS
 For now, simply uncomment `'security/ir.model.access.csv'` from `__manifest__.py` of the root of the module so that we can see it appear as a navigatable menu item from the top-left corner of our navigation bar.
 
 ## Seeing Changes
-Just like in [Checking Models](../models.md#checking-models), you need to restart Odoo in order to see the changes made to your module. After restarting, upgrade the module. You should be either directed to the view of your module or see it in the menu found in the top-left corner of the navigation bar.
+Just like in [Checking Models](models.md#checking-models), you need to restart Odoo in order to see the changes made to your module. After restarting, upgrade the module. You should be either directed to the view of your module or see it in the menu found in the top-left corner of the navigation bar.
 ![Screenshot](../img/rootmenumodule.png)

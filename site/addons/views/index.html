@@ -129,6 +129,14 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#allowing-permissions" class="nav-link">Allowing Permissions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#seeing-changes" class="nav-link">Seeing Changes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -256,7 +264,21 @@
 <blockquote>
 <h3 id="i-note"><strong><code>ｉ</code> Note</strong></h3>
 <p>In the XML file, <strong>the view must come first before the menu item</strong>; <code>&lt;record&gt;</code> before <code>&lt;menuitem&gt;</code>. Think of it as like defining functions in C first before calling them in <code>main()</code>.</p>
-</blockquote></div>
+</blockquote>
+<h2 id="allowing-permissions">Allowing Permissions</h2>
+<p>In order for the views and menu items to be accessible by you, we go back to the <code>__manifest__.py</code> file,</p>
+<pre><code class="language-python"># always loaded
+'data': [
+    # 'security/ir.model.access.csv',
+    'views/views.xml',
+    'views/templates.xml',
+],
+</code></pre>
+<p>Notice where one of them is commented, <code>'security/ir.model.access.csv'</code>. This CSV file dictates permissions for the views and menu items which will be discussed in another section.</p>
+<p>For now, simply uncomment <code>'security/ir.model.access.csv'</code> from <code>__manifest__.py</code> of the root of the module so that we can see it appear as a navigatable menu item from the top-left corner of our navigation bar.</p>
+<h2 id="seeing-changes">Seeing Changes</h2>
+<p>Just like in <a href="../models/#checking-models">Checking Models</a>, you need to restart Odoo in order to see the changes made to your module. After restarting, upgrade the module. You should be either directed to the view of your module or see it in the menu found in the top-left corner of the navigation bar.
+<img alt="Screenshot" src="../../img/rootmenumodule.png" /></p></div>
             </div>
         </div>
 
