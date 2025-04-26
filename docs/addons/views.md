@@ -139,3 +139,22 @@ You can also uncomment the following line in the scaffolded model, lines 43-46:
 > ### **`ｉ` Note**
 > In the XML file, **the view must come first before the menu item**; `<record>` before `<menuitem>`. Think of it as like defining functions in C first before calling them in `main()`.
 
+## Allowing Permissions
+In order for the views and menu items to be accessible by you, we go back to the `__manifest__.py` file,
+
+````python
+# always loaded
+'data': [
+    # 'security/ir.model.access.csv',
+    'views/views.xml',
+    'views/templates.xml',
+],
+````
+
+Notice where one of them is commented, `'security/ir.model.access.csv'`. This CSV file dictates permissions for the views and menu items which will be discussed in another section.
+
+For now, simply uncomment `'security/ir.model.access.csv'` from `__manifest__.py` of the root of the module so that we can see it appear as a navigatable menu item from the top-left corner of our navigation bar.
+
+## Seeing Changes
+Just like in [Checking Models](../models.md#checking-models), you need to restart Odoo in order to see the changes made to your module. After restarting, upgrade the module. You should be either directed to the view of your module or see it in the menu found in the top-left corner of the navigation bar.
+![Screenshot](../img/rootmenumodule.png)
